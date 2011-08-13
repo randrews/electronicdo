@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @pilgrim.name
+%p
+  %b Game:
+  = @pilgrim.game_id
+
+= link_to 'Edit', edit_pilgrim_path(@pilgrim)
+\|
+= link_to 'Back', pilgrims_path

@@ -1,0 +1,21 @@
+%h1 Listing pilgrims
+
+%table
+  %tr
+    %th Name
+    %th Game
+    %th
+    %th
+    %th
+
+  - @pilgrims.each do |pilgrim|
+    %tr
+      %td= pilgrim.name
+      %td= pilgrim.game_id
+      %td= link_to 'Show', pilgrim
+      %td= link_to 'Edit', edit_pilgrim_path(pilgrim)
+      %td= link_to 'Destroy', pilgrim, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Pilgrim', new_pilgrim_path

@@ -1,0 +1,5 @@
+%li.string.optional#pilgrim_name_input
+  %label{:for => "game_pilgrims_attributes_#{i}_name"}
+    = "Pilgrim #{i+1} name"
+  = text_field_tag "game[pilgrims_attributes][#{i}][name]", pilgrim.name
+  = hidden_field_tag "game[pilgrims_attributes][#{i}][id]", pilgrim.id
