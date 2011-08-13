@@ -3,6 +3,7 @@
 gem 'rails', '3.0.9'
 gem 'sqlite3', '1.3.3'
 gem 'haml-rails', '0.3.4'
+gem 'formtastic', '1.2.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

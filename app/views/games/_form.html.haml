@@ -1,0 +1,24 @@
+= semantic_form_for @game do |f|
+  -if @game.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@game.errors.count, "error")} prohibited this game from being created:"
+      %ul
+        - @game.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.inputs "Basic" do
+    = f.input :name, :label => "Game name", :required => true
+
+  = f.inputs "Passwords" do
+    = f.input :password, :label => "Player password", :as => :password
+    %li.explanation The player password is optional; if provided, your players will need it to take their turns.
+    = f.input :admin_password, :required => true
+    %li.explanation The admin password allows you to change the game parameters after the game is created.
+
+  = f.inputs "Game parameters" do
+    = f.input :goal_words, :label => "Number of goal words", :required => true
+    /= f.input :black_stones, :label => "Number of black stones", :required => true
+    /= f.input :white_stones, :label => "Number of white stones", :required => true
+
+  .actions
+    = f.submit 'Create game'

@@ -1,7 +1,8 @@
 body, html { height: 100%; }
 body {
-       font-family: Helvetica;
-       font-size: 16pt;
+       font-family: verdana, arial, helvetica, sans-serif;
+       font-size:   16pt;
+       line-height: 22px;
        color: #3c1f00;
        background-color: #fff0ac;
        margin: 0;
@@ -43,8 +44,40 @@ body {
           margin: 10px;
           float: left;
           display: inline;
-          cursor: pointer;
           }
 
+/* These images were made here:
+   http://dabuttonfactory.com/#t=Visit%20a%20game&f=DejaVuSansCondensed&ts=24&tc=ffffff&tshs=1&tshc=222222&it=png&c=5&bgt=gradient&bgc=dd6f00&ebgc=733b04&w=200&h=50
+*/
 #start-button { background-image: url(/images/start_button.png); }
 #visit-button { background-image: url(/images/visit_button.png); }
+
+input[type="text"], input[type="password"] {
+                                             vertical-align: middle;
+                                             line-height: 32px;
+                                             font-size: 22px;
+                                             width: 300px;
+                                             height: 32px;
+                                             -webkit-border-radius: 10px;
+                                             border: 1px solid #db6f00;
+                                             }
+li label {
+           margin-right: 10px;
+           vertical-align: middle;
+           }
+
+ol { list-style: none; }
+fieldset { border:none; }
+ol li input { float: right; }
+ol li {
+        clear: both;
+        width: 600px;
+        margin-top: 20px;
+        }
+
+.explanation { 
+               color: #db6f00;
+               font-size: 12px;
+               font-style: italic;
+               margin-top: 20px;
+               }

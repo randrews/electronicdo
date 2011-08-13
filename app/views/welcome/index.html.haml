@@ -11,5 +11,7 @@
     From here, you can start a new game, or visit a game that's running:
 
   .buttons
-    .button#start-button{:href => "/"}
-    .button#visit-button{:href => "/"}
+    - link_to new_game_path do
+      .button#start-button
+    - link_to games_path do
+      .button#visit-button
