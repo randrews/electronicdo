@@ -10,15 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110812195835) do
+ActiveRecord::Schema.define(:version => 20110813041041) do
 
   create_table "games", :force => true do |t|
-    t.integer  "white_stones",   :default => 20
-    t.integer  "black_stones",   :default => 20
-    t.integer  "goal_words",     :default => 10
+    t.integer  "goal_words",     :default => 10, :null => false
     t.string   "name",                           :null => false
     t.string   "password"
     t.string   "admin_password",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pilgrims", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "game_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

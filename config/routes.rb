@@ -1,4 +1,6 @@
 Electronicdo::Application.routes.draw do
+  resources :pilgrims
+
   resources :games
 
     root :to => "welcome#index"

@@ -17,8 +17,18 @@
 
   = f.inputs "Game parameters" do
     = f.input :goal_words, :label => "Number of goal words", :required => true
-    /= f.input :black_stones, :label => "Number of black stones", :required => true
-    /= f.input :white_stones, :label => "Number of white stones", :required => true
+
+  = f.inputs "Pilgrims" do
+    / The ones we have objects for
+    - @game.pilgrims.each_with_index do |p, i|
+      = render :partial => 'pilgrims/pilgrim', :locals => {:pilgrim => p, :i => i}
+
+    / The rest of the five blank fields
+    - ps = @game.pilgrims.size
+    - (5 - @game.pilgrims.size).times do |i|
+      = render :partial => 'pilgrims/pilgrim', :locals => {:pilgrim => Pilgrim.new, :i => ps+i}
+
+    %li.explanation You must have between three and five pilgrims
 
   .actions
     = f.submit 'Create game'

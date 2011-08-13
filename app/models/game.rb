@@ -1,8 +1,18 @@
 class Game < ActiveRecord::Base
-    before_create :setup_stones
+    has_many :pilgrims
+    accepts_nested_attributes_for(:pilgrims,
+                                  :reject_if => lambda{|p| p[:name].blank? },
+                                  :limit => 5)
 
-    def setup_stones black=20, white=20
-        self.black_stones = black
-        self.white_stones = white
+    validate :pilgrim_count, :pilgrim_names
+
+    def pilgrim_count
+        s = self.pilgrims.size
+        errors.add_to_base "Must have between 3 and 5 pilgrims" unless s>=3 && s<=5
+    end
+
+    def pilgrim_names
+        n = self.pilgrims.map &:name
+        errors.add_to_base "Pilgrim names must be unique" unless n.size == n.uniq.size
     end
 end
