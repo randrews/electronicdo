@@ -6,6 +6,8 @@ class Game < ActiveRecord::Base
 
     validate :pilgrim_count, :pilgrim_names
 
+    has_many :turns
+
     def pilgrim_count
         s = self.pilgrims.size
         errors.add_to_base "Must have between 3 and 5 pilgrims" unless s>=3 && s<=5

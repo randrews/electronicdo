@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  game_id: 1
+  pilgrim_id: 1
+  white_stones_drawn: 1
+  black_stones_drawn: 1
+  color_kept: 1
+  pilgrim_rescued: 1
+  pilgrim_in_trouble: 1
+  goal_words_used: 1
+  state: 1
+
+two:
+  game_id: 1
+  pilgrim_id: 1
+  white_stones_drawn: 1
+  black_stones_drawn: 1
+  color_kept: 1
+  pilgrim_rescued: 1
+  pilgrim_in_trouble: 1
+  goal_words_used: 1
+  state: 1
