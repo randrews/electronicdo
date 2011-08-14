@@ -16,9 +16,8 @@ class GamesController < ApplicationController
         @game = Game.find(params[:id])
 
         # Private game, ask them for a password
-        puts @game.password.inspect
         if !@game.password.blank? && params[:p] != @game.password
-            flash[:error] = "Sorry, wrong password" if !params[:p].blank?
+            @wrong_password = !params[:p].blank?
             render 'enter_password'
         else
             render 'show'
