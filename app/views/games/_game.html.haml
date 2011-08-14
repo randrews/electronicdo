@@ -1,0 +1,8 @@
+%li.game
+  - unless game.password.blank?
+    .lock
+  .name= game.name
+  .visit-link= link_to 'Visit', game
+  .pilgrims
+    = game.pilgrims.size
+    pilgrims
