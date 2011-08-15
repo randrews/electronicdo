@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
 
     validate :pilgrim_count, :pilgrim_names
 
-    has_many :turns
+    has_many :turns, :order => "created_at"
 
     def pilgrim_count
         s = self.pilgrims.size
@@ -16,5 +16,18 @@ class Game < ActiveRecord::Base
     def pilgrim_names
         n = self.pilgrims.map &:name
         errors.add_to_base "Pilgrim names must be unique" unless n.size == n.uniq.size
+    end
+
+    def last_activity
+        turns.last && turns.last.updated_at
+    end
+
+    def can_start_turn?
+        turns.blank? || turns.last.state == Turn::FINISHED
+    end
+
+    def storyteller
+        idx = Turn.find(:all, :conditions => {:state => Turn::FINISHED, :game_id => id}).count % pilgrims.size
+        pilgrims[idx]
     end
 end

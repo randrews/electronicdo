@@ -2,4 +2,8 @@
 
 %h1= @game.name
 
+= form_tag take_turn_game_path(@game) do
+  %input{:type => 'image', :src => '/images/take_turn.png'}
+  = hidden_field_tag :p, @password
+
 = link_to 'Game list', games_path

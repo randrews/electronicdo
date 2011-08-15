@@ -8,9 +8,11 @@ class Turn < ActiveRecord::Base
     SELECTED = 1
     FINISHED = 2
 
+    belongs_to :game
     has_one :pilgrim
 
     validate :valid_enums
+    validates_presence_of :pilgrim
 
     def valid_enums
         errors.add_to_base "Color must be 1 (black) or 2 (white)" unless [nil, 1, 2].include? color_kept

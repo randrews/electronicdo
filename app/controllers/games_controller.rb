@@ -1,38 +1,39 @@
 class GamesController < ApplicationController
-    # GET /games
-    # GET /games.xml
-    def index
-        @games = Game.all
+    before_filter :check_password, :on => [:take_turn, :show]
 
-        respond_to do |format|
-            format.html # index.html.erb
-            format.xml  { render :xml => @games }
-        end
-    end
-
-    # GET /games/1
-    # GET /games/1.xml
-    def show
+    def check_password
         @game = Game.find(params[:id])
 
         # Private game, ask them for a password
         if !@game.password.blank? && params[:p] != @game.password
             @wrong_password = !params[:p].blank?
             render 'enter_password'
-        else
-            render 'show'
         end
+
+        # They put in the right password (or there is none),
+        # so store it in a var so we can use it in hidden fields
+        @password = params[:p]
+    end
+
+    # POST /games/:id/take_turn
+    def take_turn
+        @game = Game.find(params[:id])
+        @turn = Turn.new :game => @game
+    end
+
+    # GET /games
+    def index
+        @games = Game.all
+    end
+
+    # GET /games/1
+    def show
+        @game = Game.find(params[:id])
     end
 
     # GET /games/new
-    # GET /games/new.xml
     def new
         @game = Game.new
-
-        respond_to do |format|
-            format.html # new.html.erb
-            format.xml  { render :xml => @game }
-        end
     end
 
     # GET /games/1/edit
@@ -41,46 +42,31 @@ class GamesController < ApplicationController
     end
 
     # POST /games
-    # POST /games.xml
     def create
         @game = Game.new(params[:game])
 
-        respond_to do |format|
-            if @game.save
-                format.html { redirect_to(@game, :notice => 'Game was successfully created.') }
-                format.xml  { render :xml => @game, :status => :created, :location => @game }
-            else
-                format.html { render :action => "new" }
-                format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }
-            end
+        if @game.save
+            redirect_to(@game, :notice => 'Game was successfully created.')
+        else
+            render :action => "new"
         end
     end
 
     # PUT /games/1
-    # PUT /games/1.xml
     def update
         @game = Game.find(params[:id])
 
-        respond_to do |format|
-            if @game.update_attributes(params[:game])
-                format.html { redirect_to(@game, :notice => 'Game was successfully updated.') }
-                format.xml  { head :ok }
-            else
-                format.html { render :action => "edit" }
-                format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }
-            end
+        if @game.update_attributes(params[:game])
+            redirect_to(@game, :notice => 'Game was successfully updated.')
+        else
+            render :action => "edit"
         end
     end
 
-    # DELETE /games/1
-    # DELETE /games/1.xml
-    def destroy
-        @game = Game.find(params[:id])
-        @game.destroy
-
-        respond_to do |format|
-            format.html { redirect_to(games_url) }
-            format.xml  { head :ok }
-        end
-    end
+    # # DELETE /games/1
+    # def destroy
+    #     @game = Game.find(params[:id])
+    #     @game.destroy
+    #     redirect_to(games_url)
+    # end
 end

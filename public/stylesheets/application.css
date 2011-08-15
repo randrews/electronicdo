@@ -99,7 +99,7 @@ ul { padding-left: 0; }
                      margin-bottom: 10px;
                      }
 
-ul.game-list .lock, ul.game-list .name, ul.game-list .pilgrims, ul.game-list .visit-link
+ul.game-list .lock, ul.game-list .name, ul.game-list .activity, ul.game-list .visit-link
 { 
   display: inline;
   vertical-align: middle;
@@ -119,7 +119,7 @@ ul.game-list .lock, ul.game-list .name, ul.game-list .pilgrims, ul.game-list .vi
               background-image: url(/images/lock.png);
               }
 
-.game .pilgrims { 
+.game .activity { 
                   color: #db6f00;
                   font-size: 16pt;
                   font-style: italic;                  

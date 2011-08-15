@@ -3,6 +3,8 @@
     .lock
   .name= game.name
   .visit-link= link_to 'Visit', game
-  .pilgrims
-    = game.pilgrims.size
-    pilgrims
+  .activity
+    - if game.last_activity
+      = "Last turn #{time_ago_in_words(game.last_activity)} ago"
+    - else
+      = "No turns taken"
