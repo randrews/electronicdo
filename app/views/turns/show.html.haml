@@ -1,0 +1,9 @@
+%h1= turn_title(@turn)
+
+.white_stones
+  - stone_images('white', @turn).each do |i|
+    = image_tag i
+
+.white_stones
+  - stone_images('black', @turn).each do |i|
+    = image_tag i

@@ -1,24 +1,15 @@
 class GamesController < ApplicationController
-    before_filter :check_password, :on => [:take_turn, :show]
+    before_filter :check_password, :only => [:take_turn, :show]
 
     def check_password
-        @game = Game.find(params[:id])
-
-        # Private game, ask them for a password
-        if !@game.password.blank? && params[:p] != @game.password
-            @wrong_password = !params[:p].blank?
-            render 'enter_password'
-        end
-
-        # They put in the right password (or there is none),
-        # so store it in a var so we can use it in hidden fields
-        @password = params[:p]
+        @password = password_valid_for?(params[:id])
     end
 
     # POST /games/:id/take_turn
-    def take_turn
+    def start_turn
         @game = Game.find(params[:id])
-        @turn = Turn.new :game => @game
+        @turn = @game.create_turn
+        redirect_to game_turn_path(@game,@turn)
     end
 
     # GET /games
@@ -29,6 +20,7 @@ class GamesController < ApplicationController
     # GET /games/1
     def show
         @game = Game.find(params[:id])
+        @turn = @game.latest_turn
     end
 
     # GET /games/new
@@ -46,7 +38,7 @@ class GamesController < ApplicationController
         @game = Game.new(params[:game])
 
         if @game.save
-            redirect_to(@game, :notice => 'Game was successfully created.')
+            redirect_to(game_path(@game, :p => @game.password), :notice => 'Game was successfully created.')
         else
             render :action => "new"
         end

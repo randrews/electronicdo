@@ -1,7 +1,7 @@
 Electronicdo::Application.routes.draw do
     # resources :pilgrims
     resources :games, :except => :destroy do
-        post 'take_turn', :on => :member
+        post 'start_turn', :on => :member
         resources :turns, :only => [:edit, :update, :show]
     end
 

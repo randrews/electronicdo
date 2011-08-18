@@ -5,6 +5,9 @@ class Game < ActiveRecord::Base
                                   :limit => 5)
 
     validate :pilgrim_count, :pilgrim_names
+    validates_presence_of :admin_password, :name, :goal_words
+    validates_uniqueness_of :name
+    validates_numericality_of :goal_words
 
     has_many :turns, :order => "created_at"
 
@@ -23,11 +26,43 @@ class Game < ActiveRecord::Base
     end
 
     def can_start_turn?
-        turns.blank? || turns.last.state == Turn::FINISHED
+        turns.blank? || turns.last.finished?
     end
 
     def storyteller
         idx = Turn.find(:all, :conditions => {:state => Turn::FINISHED, :game_id => id}).count % pilgrims.size
         pilgrims[idx]
+    end
+
+    def create_turn
+        raise "A turn is already in progress" unless can_start_turn?
+        t = turns.new :pilgrim => storyteller
+        t.white_stones_drawn, t.black_stones_drawn = three_random_stones
+        t.save
+        t
+    end
+
+    def white_stones_left
+        drawn = turns.select{|t| t.white_kept? }.map(&:white_stones_drawn).sum || 0
+        20 - (drawn % 20)
+    end
+
+    def black_stones_left
+        drawn = turns.select{|t| t.black_kept? }.map(&:black_stones_drawn).sum || 0
+        20 - (drawn % 20)
+    end
+
+    # Returns two values: the number of white stones drawn and the number of black stones drawn
+    def three_random_stones
+        bag = [Turn::BLACK]*black_stones_left + [Turn::WHITE]*white_stones_left
+        draw = bag.shuffle[0..2]
+        w = draw.count(Turn::WHITE)
+        b = draw.count(Turn::BLACK)
+
+        return w, b
+    end
+
+    def latest_turn
+        turns.last
     end
 end
