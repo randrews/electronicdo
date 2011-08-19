@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
                                   :limit => 5)
 
     validate :pilgrim_count, :pilgrim_names
-    validates_presence_of :admin_password, :name, :goal_words
+    validates_presence_of :name, :goal_words
     validates_uniqueness_of :name
     validates_numericality_of :goal_words
 

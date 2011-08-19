@@ -10,13 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110814022121) do
+ActiveRecord::Schema.define(:version => 20110819010509) do
 
   create_table "games", :force => true do |t|
-    t.integer  "goal_words",     :default => 10, :null => false
-    t.string   "name",                           :null => false
+    t.integer  "goal_words", :default => 10, :null => false
+    t.string   "name",                       :null => false
     t.string   "password"
-    t.string   "admin_password",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
