@@ -103,3 +103,31 @@ input[type="password"] {
               }
 
 input[type='image'] { margin-top: 20px; }
+
+/**************************************************/
+
+.centered { text-align: center; }
+
+.stone-container { 
+                   webkit-border-radius: 10px;
+                   moz-border-radius: 10px;
+                   border-radius: 10px;
+                   background-color: white;
+                   padding-top: 10px;
+                   padding-bottom: 10px;
+                   }
+
+.stone-container h2 { text-align: center; }
+
+.stone-images {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+                }
+
+.stone-images img { display: inline; }
+
+.turn-steps {
+              margin-left: 10px;
+              margin-right: 10px;
+              }

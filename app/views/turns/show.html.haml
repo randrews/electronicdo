@@ -1,9 +1,31 @@
 %h1= turn_title(@turn)
 
-.white_stones
-  - stone_images('white', @turn).each do |i|
-    = image_tag i
+- if @turn.state == Turn::DRAWN
+  %h2.grid_12.alpha.omega.centered Do you choose...
 
-.white_stones
-  - stone_images('black', @turn).each do |i|
-    = image_tag i
+  - w_stones = stone_images('white', @turn)
+  - b_stones = stone_images('black', @turn)
+
+  .grid_6.alpha.stone-container
+    .stone-images
+      - w_stones.each do |i|
+        = image_tag i
+
+    %h2
+      = w_stones.size
+      white
+      = (w_stones.size == 1 ? "stone" : "stones") + "?"
+
+    = render "steps_1_untroubled"
+
+  .grid_6.omega.stone-container
+    .stone-images
+      - b_stones.each do |i|
+        = image_tag i
+
+    %h2
+      = b_stones.size
+      black
+      = (b_stones.size == 1 ? "stone" : "stones") + "?"
+
+    = render "steps_2_untroubled"
