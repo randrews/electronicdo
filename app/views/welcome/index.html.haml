@@ -1,7 +1,8 @@
-%h1 Electronic Do
-%small
+%h1.grid_12.alpha.omega Electronic Do
+%small.grid_12.alpha.omega
   %em For geographically-dispersed pilgrims
 
+.grid_12.alpha.omega.intro-text
   %p
     Welcome to Electronic Do! This is a tool to keep track of a game called
     = link_to "Do: Pilgrims of the Flying Temple", "http://danielsolisblog.blogspot.com/2007/08/do-pilgrims-of-flying-temple.html"
@@ -10,8 +11,10 @@
   %p
     From here, you can start a new game, or visit a game that's running:
 
-  .buttons
-    - link_to new_game_path do
-      .button#start-button
-    - link_to games_path do
-      .button#visit-button
+.grid_4.prefix_2.alpha
+  = link_to new_game_path do
+    .button#start-button
+
+.grid_4.suffix_2.omega
+  = link_to games_path do
+    .button#visit-button

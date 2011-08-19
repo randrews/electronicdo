@@ -1,34 +1,44 @@
-= semantic_form_for @game do |f|
-  -if @game.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@game.errors.count, "error")} prohibited this game from being created:"
-      %ul
-        - @game.errors.full_messages.each do |msg|
-          %li= msg
+.grid_12.alpha.omega
+  = form_for @game do |f|
+    -if @game.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@game.errors.count, "error")} prohibited this game from being created:"
+        %ul
+          - @game.errors.full_messages.each do |msg|
+            %li= msg
 
-  = f.inputs "Basic" do
-    = f.input :name, :label => "Game name", :required => true
+    .field
+      .grid_4.alpha= f.label :name, "Game name:"
+      .grid_8.omega= f.text_field :name
 
-  = f.inputs "Passwords" do
-    = f.input :password, :label => "Player password", :as => :password
-    %li.explanation The player password is optional; if provided, your players will need it to take their turns.
-    = f.input :admin_password, :required => true
-    %li.explanation The admin password allows you to change the game parameters after the game is created.
+    .field
+      .grid_4.alpha= f.label :password, "Game password:"
+      .grid_8.omega= f.password_field :password
+      .explanation.grid_12.prefix_4.alpha.omega
+        The password is optional; if provided, your players will need it to take their turns.
 
-  = f.inputs "Game parameters" do
-    = f.input :goal_words, :label => "Number of goal words", :required => true
+    .field
+      .grid_12.alpha.omega
 
-  = f.inputs "Pilgrims" do
-    / The ones we have objects for
+    .field
+      .grid_4.alpha= f.label :goal_words, "Number of goal words:"
+      .grid_8.omega= f.text_field :goal_words
+
+    .field
+      .grid_12.alpha.omega
+
+    -# The ones we have objects for
     - @game.pilgrims.each_with_index do |p, i|
       = render :partial => 'pilgrims/pilgrim', :locals => {:pilgrim => p, :i => i}
 
-    / The rest of the five blank fields
+    -# The rest of the five blank fields
     - ps = @game.pilgrims.size
     - (5 - @game.pilgrims.size).times do |i|
       = render :partial => 'pilgrims/pilgrim', :locals => {:pilgrim => Pilgrim.new, :i => ps+i}
 
-    %li.explanation You must have between three and five pilgrims
+    .explanation.grid_12.prefix_4.alpha.omega
+      You must have between three and five pilgrims
 
-  .actions
-    %input{ :type => 'image', :src => '/images/create_game.png' }
+    .field
+      .grid_4.prefix_4.suffix_4.alpha.omega.button
+        %input{ :type => 'image', :src => '/images/create_game.png' }

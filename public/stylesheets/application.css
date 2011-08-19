@@ -1,49 +1,21 @@
-body, html { height: 100%; }
-body {
-       font-family: verdana, arial, helvetica, sans-serif;
-       font-size:   16pt;
-       line-height: 22px;
-       color: #3c1f00;
-       background-color: #fff0ac;
-       margin: 0;
-       }
-
-#main {
-        width:760px;
-        position:absolute;
-        left:50%;
-        margin-left: -400px;
-        padding: 20px;
-        padding-top: 0;
-        min-height: 100%;
-        }
-
-.curls {
-         width: 100px;
-         position:absolute;
-         top: 0;
-         height: 100%;
-         left: 50%;
-         background-repeat: both;
-         }
-
-#curls-l { background-image: url(/images/curls-l.png); margin-left: -500px; }
-#curls-r { background-image: url(/images/curls-r.png); margin-left: 400px; }
-
-.buttons { 
-           width: 480px;
-           height: 70px;
-           position: absolute;
-           left: 50%;
-           margin-left: -240px;
+body.edo {
+           font-family: verdana, arial, helvetica, sans-serif;
+           font-size:   16pt;
+           line-height: 22px;
+           color: #3c1f00;
+           background-color: #fff0ac;
+           background-image: url(/images/curls-bg.png);
+           background-repeat: repeat-y;
+           background-position: center top;
+           margin: 0;
            }
+
+.main-content { margin-top: 20px; }
+.intro-text { margin-top: 20px; }
 
 .button { 
           width: 200px;
           height: 50px;
-          margin: 10px;
-          float: left;
-          display: inline;
           }
 
 /* These images were made here:
@@ -52,59 +24,58 @@ body {
 #start-button { background-image: url(/images/start_button.png); }
 #visit-button { background-image: url(/images/visit_button.png); }
 
-input[type="text"], input[type="password"] {
-                                             vertical-align: middle;
-                                             line-height: 32px;
-                                             font-size: 22px;
-                                             width: 300px;
-                                             height: 32px;
-                                             -webkit-border-radius: 10px;
-                                             -moz-border-radius: 10px;
-                                             border: 1px solid #db6f00;
-                                             padding: 5px;
-                                             }
+input[type="text"],
+input[type="password"] {
+                         vertical-align: middle;
+                         line-height: 32px;
+                         font-size: 22px;
+                         height: 32px;
+                         webkit-border-radius: 10px;
+                         moz-border-radius: 10px;
+                         border: 1px solid #db6f00;
+                         padding: 5px;
+                         }
 
-li label {
-           margin-right: 10px;
-           vertical-align: middle;
-           }
+.field { height: 44px; }
 
-ol, ul { list-style: none; }
-fieldset { border:none; }
-ol li input { float: right; }
-ol li {
-        clear: both;
-        width: 600px;
-        margin-top: 20px;
-        }
+.field label { 
+               float: right;
+               line-height: 32px;
+               padding-top: 6px; /* One extra for not having a border */
+               }
+
+.edo input { width: 95%; }
 
 .explanation { 
                color: #db6f00;
                font-size: 12px;
                font-style: italic;
-               margin-top: 20px;
                }
 
-ul { padding-left: 0; }
+/**************************************************/
 
-.game-list li.game { 
-                     width: 100%;
-                     height: 48px;
-                     -webkit-border-radius: 10px;
-                     -moz-border-radius: 10px;
-                     background-color: white;
-                     border: 1px solid #db6f00;
-                     padding: 5px;
-                     position: relative;
-                     margin-bottom: 10px;
-                     }
+.game { 
+        height: 48px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        background-color: white;
+        border: 1px solid #db6f00;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        position: relative;
+        margin-bottom: 10px;
+        }
 
-ul.game-list .lock, ul.game-list .name, ul.game-list .activity, ul.game-list .visit-link
+.game .lock,
+.game .name,
+.game .activity,
+.game .visit-link
 { 
   display: inline;
   vertical-align: middle;
   line-height: 48px;
- }
+  }
 
 .game .visit-link {
                     float: right;

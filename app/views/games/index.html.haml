@@ -1,9 +1,7 @@
 %h1 Listing games
 
-%ul.game-list
-  = render :partial => 'games/game', :collection => @games
+= render :partial => 'games/game', :collection => @games
 
-%br
-
-- link_to new_game_path do
-  .button#start-button
+.grid_4.suffix_8.alpha.omega
+  = link_to new_game_path do
+    .button#start-button
