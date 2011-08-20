@@ -2,7 +2,10 @@ Electronicdo::Application.routes.draw do
     # resources :pilgrims
     resources :games, :except => :destroy do
         post 'start_turn', :on => :member
-        resources :turns, :only => [:edit, :update, :show]
+        resources :turns, :only => [:edit, :update, :show] do
+            post('choose' => 'turns#choose',
+                 :as => :choose)    
+        end
     end
 
     root :to => "welcome#index"

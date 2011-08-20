@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-    before_filter :check_password, :only => [:take_turn, :show]
+    before_filter :check_password, :only => [:start_turn, :show]
 
     def check_password
         @password = password_valid_for?(params[:id])
@@ -9,7 +9,7 @@ class GamesController < ApplicationController
     def start_turn
         @game = Game.find(params[:id])
         @turn = @game.create_turn
-        redirect_to game_turn_path(@game,@turn)
+        redirect_to game_turn_path(@game,@turn, :p => @game.password)
     end
 
     # GET /games
@@ -38,7 +38,8 @@ class GamesController < ApplicationController
         @game = Game.new(params[:game])
 
         if @game.save
-            redirect_to(game_path(@game, :p => @game.password), :notice => 'Game was successfully created.')
+            redirect_to(game_path(@game, :p => @game.password),
+                        :notice => 'Game was successfully created.')
         else
             render :action => "new"
         end

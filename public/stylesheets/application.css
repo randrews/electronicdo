@@ -123,6 +123,7 @@ input[type='image'] { margin-top: 20px; }
                 width: 100%;
                 text-align: center;
                 margin-bottom: 20px;
+                min-height: 94px;
                 }
 
 .stone-images img { display: inline; }
