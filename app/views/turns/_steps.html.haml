@@ -1,0 +1,35 @@
+- if stones == 0 && !troubled
+  %p.turn-steps
+    The Troublemakers will write a sentence about you getting into trouble (using a goal word if they like).
+
+- if stones == 1 && !troubled
+  %p.turn-steps
+    The Troublemakers will write a sentence about you getting into trouble (using a goal word if they like).
+  %p.turn-steps
+    Then, you will write a sentence about you getting out of trouble.
+
+- if stones == 2 && !troubled
+  %p.turn-steps
+    You will write a sentence about rescuing someone, (using a goal word if you like).
+  %p.turn-steps
+    Then, the Troublemakers will write a sentence about you getting into trouble (using a goal word if they like).
+
+- if stones == 3 && !troubled
+  %p.turn-steps
+    You will write a sentence about rescuing someone, (using a goal word if you like).
+
+- ##############################
+
+- if stones == 0 && troubled
+  %p.turn-steps
+    You will write a sentence about you getting into worse trouble (using a goal word if you like).
+
+- if (stones == 1 || stones == 3) && troubled
+  %p.turn-steps
+    You will write a sentence about getting yourself out of trouble.
+
+- if stones == 2 && troubled
+  %p.turn-steps
+    You will write a sentence about getting yourself out of trouble.
+  %p.turn-steps
+    Then, the Troublemakers will write a sentence about you getting back into trouble (using a goal word if they like).

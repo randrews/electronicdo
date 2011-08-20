@@ -8,6 +8,8 @@ class TurnsController < ApplicationController
     # GET /games/:game_id/turns/:id
     def show
         @turn = Turn.find(params[:id])
+        @game = @turn.game
+        @troubled = @game.pilgrim_in_trouble?(@turn.pilgrim)
     end
 
     def choose

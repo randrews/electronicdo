@@ -65,4 +65,12 @@ class Game < ActiveRecord::Base
     def latest_turn
         turns.last
     end
+
+    def pilgrim_in_trouble? pilgrim
+        last_relevant_turn = turns.select{|t|
+            t.pilgrim_in_trouble_id == pilgrim.id ||
+            t.pilgrim_rescued_id == pilgrim.id }.last
+
+        last_relevant_turn && last_relevant_turn.pilgrim_in_trouble_id == pilgrim.id
+    end
 end
