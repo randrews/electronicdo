@@ -19,7 +19,8 @@
     = render "steps_1_untroubled"
 
     = form_tag game_turn_choose_path(@game, @turn, :p=>@game.password, :color => 'white') do
-      %input.button{:type => 'image', :src => '/images/choose.png'}
+      .grid_6.alpha.omega.align-center
+        %input.button{:type => 'image', :src => '/images/choose.png'}
 
   .grid_6.omega.stone-container
     .stone-images
@@ -34,4 +35,5 @@
     = render "steps_2_untroubled"
 
     = form_tag game_turn_choose_path(@game, @turn, :p=>@game.password, :color => 'black') do
-      %input.button{:type => 'image', :src => '/images/choose.png'}
+      .grid_6.alpha.omega.align-center
+        %input.button{:type => 'image', :src => '/images/choose.png'}

@@ -13,7 +13,7 @@ body.edo {
 .main-content { margin-top: 20px; }
 .intro-text { margin-top: 20px; }
 
-.button { 
+.button, .edo input.button { 
           width: 200px;
           height: 50px;
           }
@@ -132,3 +132,5 @@ input[type='image'] { margin-top: 20px; }
               margin-left: 10px;
               margin-right: 10px;
               }
+
+.align-center { text-align: center; }
