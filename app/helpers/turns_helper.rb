@@ -14,4 +14,9 @@ module TurnsHelper
         end
         files
     end
+
+    def options_for_rescue turn
+        pilgrims = turn.game.all_troubled_pilgrims.map{|p| ["Pilgrim #{p.name}", p.id]}
+        options_for_select([["A worldly person", 0]] + pilgrims)
+    end
 end

@@ -73,4 +73,8 @@ class Game < ActiveRecord::Base
 
         last_relevant_turn && last_relevant_turn.pilgrim_in_trouble_id == pilgrim.id
     end
+
+    def all_troubled_pilgrims
+        pilgrims.select{|p| pilgrim_in_trouble? p}
+    end
 end

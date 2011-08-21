@@ -26,4 +26,22 @@ class TurnsController < ApplicationController
 
         redirect_to game_turn_path(@game, @turn, :p => @password)
     end
+
+    def finish
+        @turn = Turn.find(params[:turn_id])
+        @game = @turn.game
+
+        @turn.state = Turn::FINISHED
+
+        @turn.handle_rescue_trouble params[:pilgrim_rescued]
+
+        goal_words = 0
+        if params[:pilgrim_used_goal_word] then goal_words += 1 end
+        if params[:troublemakers_used_goal_word] then goal_words += 1 end
+        @turn.goal_words_used = goal_words
+
+        @turn.save
+
+        redirect_to game_path(@game, :p => @password)
+    end
 end

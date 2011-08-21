@@ -3,4 +3,4 @@
 - if @turn.state == Turn::DRAWN
   = render 'choose_stones'
 - elsif @turn.state == Turn::SELECTED
-  Click finish when you did what the instructions said
+  = render 'finish_turn'

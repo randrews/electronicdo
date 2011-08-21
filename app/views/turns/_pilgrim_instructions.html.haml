@@ -1,0 +1,24 @@
+- stones = turn.kept_stones
+- troubled = turn.game.pilgrim_in_trouble? turn.pilgrim
+
+- if stones == 0 && !troubled
+  %p.turn-steps
+    Sit this one out, the Troublemakers have some plans for you.
+
+- if stones == 1 && !troubled
+  %p.turn-steps
+    Wait for the Troublemakers to finish, then write a sentence about getting out of trouble.
+
+- if (stones == 2 || stones == 3) && !troubled
+  %p.turn-steps
+    Write a sentence about rescuing someone (using a goal word if you like).
+
+- ##############################
+
+- if stones == 0 && troubled
+  %p.turn-steps
+    Write a sentence about getting into worse trouble (using a goal word if you like).
+
+- if stones != 0 && troubled
+  %p.turn-steps
+    Write a sentence about getting yourself out of trouble.

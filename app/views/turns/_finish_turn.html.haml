@@ -1,0 +1,41 @@
+%h2.grid_12.alpha.omega.centered Do the following...
+
+.grid_6.alpha.stone-container
+  %h2 Troublemakers:
+
+  %p.turn-steps= render 'troublemaker_instructions', :turn => @turn
+
+.grid_6.omega.stone-container
+  %h2= "Pilgrim #{@turn.pilgrim.name}:"
+
+  %p.turn-steps= render 'pilgrim_instructions', :turn => @turn
+
+.grid_12.alpha.omega{:style => 'margin-top:20px;'}
+
+.grid_12.alpha.omega.stone-container{:style => 'margin-bottom:20px;'}
+  %h2= "When you're both finished:"
+
+  %p.turn-steps
+    = "Fill this in:"
+
+  = form_tag game_turn_finish_path(@game, @turn, :p => @game.password) do
+    - if @turn.pilgrim_may_use_goal_word?
+      .grid_1.alpha= check_box_tag :pilgrim_used_goal_word
+      .grid_11.omega= label_tag :pilgrim_used_goal_word, "Pilgrim #{@turn.pilgrim.name} used a goal word"
+      .grid_12.alpha.omega{:style => 'height: 20px'}
+
+    - if @turn.troublemakers_may_use_goal_word?
+      .grid_1.alpha= check_box_tag :troublemakers_used_goal_word
+      .grid_11.omega= label_tag :troublemakers_used_goal_word, "The Troublemakers used a goal word"
+      .grid_12.alpha.omega{:style => 'height: 20px'}
+
+    - if @turn.pilgrim_may_rescue?
+      .grid_12.alpha.omega
+        .turn-steps= label_tag :pilgrim_rescued, "Who did Pilgrim #{@turn.pilgrim.name} rescue?"
+      .grid_12.alpha.omega{:style => 'height: 10px'}
+      .grid_12.alpha.omega
+        .turn-steps= select_tag :pilgrim_rescued, options_for_rescue(@turn)
+      .grid_12.alpha.omega{:style => 'height: 20px'}
+
+    .grid_12.alpha.omega.centered
+      %input.button{:type => 'image', :src => '/images/finish_turn.png'}

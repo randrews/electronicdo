@@ -3,8 +3,8 @@ Electronicdo::Application.routes.draw do
     resources :games, :except => :destroy do
         post 'start_turn', :on => :member
         resources :turns, :only => [:edit, :update, :show] do
-            post('choose' => 'turns#choose',
-                 :as => :choose)    
+            post('choose' => 'turns#choose', :as => :choose)    
+            post('finish' => 'turns#finish', :as => :finish)    
         end
     end
 
