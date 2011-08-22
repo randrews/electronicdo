@@ -77,4 +77,17 @@ class Game < ActiveRecord::Base
     def all_troubled_pilgrims
         pilgrims.select{|p| pilgrim_in_trouble? p}
     end
+
+    def stones_for_pilgrim pilgrim
+        relevant_turns = turns.select{|t| t.pilgrim == pilgrim }
+        white_total = relevant_turns.select{|t|
+            t.color_kept == Turn::WHITE }.map{|t|
+            t.white_stones_drawn }.sum
+
+        black_total = relevant_turns.select{|t|
+            t.color_kept == Turn::BLACK }.map{|t|
+            t.black_stones_drawn }.sum
+
+        {:black => black_total, :white => white_total}
+    end
 end

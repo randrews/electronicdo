@@ -2,6 +2,8 @@
 
 %h1= @game.name
 
+= render 'game_status', :game => @game
+
 - if @game.can_start_turn?
   = form_tag start_turn_game_path(@game) do
     %input{:type => 'image', :src => '/images/take_turn.png'}
