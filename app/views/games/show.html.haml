@@ -4,12 +4,6 @@
 
 = render 'game_status', :game => @game
 
-- if @game.can_start_turn?
-  = form_tag start_turn_game_path(@game) do
-    %input{:type => 'image', :src => '/images/take_turn.png'}
-    = hidden_field_tag :p, @password
-- else
-  = link_to game_turn_path(@game, @turn, :p=>@game.password) do
-    = image_tag 'continue_turn.png'
+= render 'turn_status', :game => @game, :turn => @turn
 
 = link_to 'Game list', games_path

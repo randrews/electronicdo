@@ -1,0 +1,13 @@
+.grid_12.alpha.omega.stone-container
+  - storyteller = game.storyteller
+  - storyteller_possessive = (storyteller.name.ends_with?('s') ? storyteller.name+"'" : storyteller.name+"'s")
+  %p.turn-steps= "It's currently Pilgrim #{storyteller_possessive} turn. If that's you, you can take your turn here:"
+
+  - if game.can_start_turn?
+    = form_tag start_turn_game_path(game) do
+      .grid_12.alpha.omega.centered
+        %input.button{:type => 'image', :src => '/images/take_turn.png'}
+      = hidden_field_tag :p, game.password
+  - else
+    = link_to game_turn_path(game, turn, :p=>game.password) do
+      = image_tag 'continue_turn.png'
