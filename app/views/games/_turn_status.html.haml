@@ -9,5 +9,6 @@
         %input.button{:type => 'image', :src => '/images/take_turn.png'}
       = hidden_field_tag :p, game.password
   - else
-    = link_to game_turn_path(game, turn, :p=>game.password) do
-      = image_tag 'continue_turn.png'
+    .grid_12.alpha.omega.centered
+      = link_to game_turn_path(game, turn, :p=>game.password) do
+        = image_tag 'continue_turn.png'
