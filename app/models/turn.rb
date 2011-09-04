@@ -68,4 +68,10 @@ class Turn < ActiveRecord::Base
             self.pilgrim_in_trouble_id = self.pilgrim.id
         end
     end
+
+    def summary_string
+        "Pilgrim #{pilgrim.name} took #{kept_stones} " +
+            (white_kept? ? "white" : "black") + " stone" +
+            (kept_stones == 1 ? "" : "s")
+    end
 end

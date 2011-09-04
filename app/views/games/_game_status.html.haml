@@ -1,8 +1,17 @@
 .grid_12.alpha.omega
   Pilgrims:
-  .grid_12.alpha.omega{:style => 'height: 10px;'}
-  .grid_12.alpha.omega
-    %ul
-      - game.pilgrims.each do |pilgrim|
-        %li
-          = pilgrim_summary pilgrim
+
+.grid_12.alpha.omega{:style => 'height: 10px;'}
+
+.grid_12.alpha.omega
+  %ul
+    - game.pilgrims.each do |pilgrim|
+      %li
+        = pilgrim_summary pilgrim
+
+.grid_12.alpha.omega{:style => 'height: 10px;'}
+
+.grid_12.alpha.omega
+  = "Goal words left: #{game.goal_words_left}"
+
+.grid_12.alpha.omega{:style => 'height: 10px;'}

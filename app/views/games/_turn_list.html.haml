@@ -1,3 +1,7 @@
+.grid_12.alpha.omega{:style=>"height:20px;"}
+
+%h2 Previous turns
+
 %ul
-  - @game.finished_turns.each do |turn|
-    %li= turn.id
+  - @game.finished_turns.reverse.each do |turn|
+    = render 'previous_turn', :turn => turn

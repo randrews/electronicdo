@@ -94,4 +94,8 @@ class Game < ActiveRecord::Base
 
         {:black => black_total, :white => white_total}
     end
+
+    def goal_words_left
+        goal_words - finished_turns.map(&:goal_words_used).sum
+    end
 end
